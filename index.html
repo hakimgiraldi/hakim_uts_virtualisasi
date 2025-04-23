@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .welcome-popup {
+            position: absolute;
+            top: 30%;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 30px 60px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInZoom 1s forwards;
+        }
+
+        @keyframes fadeInZoom {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes disappear {
+            to {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: floatText 4s ease-in-out infinite;
+        }
+
+        .card p {
+            font-size: 1.5rem;
+            animation: floatText 4s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes floatText {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Popup Selamat Datang -->
+    <div class="welcome-popup" id="welcomeMessage">
+        <h2>👋 Selamat Datang di Dashboard!</h2>
+        <p>Semoga harimu menyenangkan 😊</p>
+    </div>
+
+    <!-- Kartu Nama dan NIM -->
+    <div class="card" id="cardInfo">
+        <h1>Hakim Giraldi Saputra</h1>
+        <p>NIM: 1202224002</p>
+    </div>
+
+    <script>
+        // Tampilkan popup, lalu setelah 5 detik hilangkan dan munculkan kartu info
+        setTimeout(() => {
+            const welcome = document.getElementById("welcomeMessage");
+            welcome.style.animation = "disappear 1s forwards";
+
+            // Tampilkan kartu nama & NIM setelah popup hilang
+            setTimeout(() => {
+                document.getElementById("cardInfo").classList.add("show");
+                welcome.style.display = "none";
+            }, 1000); // Setelah animasi keluar selesai (1 detik)
+        }, 4000); // Durasi tampil popup
+    </script>
+
+</body>
+
+</html>
